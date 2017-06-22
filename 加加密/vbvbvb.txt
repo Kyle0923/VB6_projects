@@ -1,0 +1,120 @@
+form1
+____________________________________________________________
+Private Sub Command1_Click()
+a = Val(Me.Text1.Text)
+If Me.Command1.Caption = "确定" Then
+    If a <= -26 Or a >= 26 Then
+    msg1 = MsgBox("密钥必须在-25到25之间", vbCritical, "error")
+    Me.Text1.Text = "0"
+    Else
+    msg2 = MsgBox("确定密钥为" & a, vbInformation + vbOKCancel, "Are you sure?")
+        If msg2 = vbOK Then
+        Me.Text1.Enabled = False
+        Me.Command1.Caption = "重设密钥"
+        Else
+        Me.Text1.Text = "0"
+        End If
+    End If
+Else
+Me.Text1.Enabled = True
+Me.Text1.Text = "0"
+Me.Command1.Caption = "确定"
+End If
+End Sub
+
+Private Sub Command2_Click()
+If Me.Text1.Enabled = False Then
+Form1.Hide
+Form2.Show
+Else
+msgk = MsgBox("未设置密钥", vbCritical, "error")
+End If
+End Sub
+
+Private Sub Form_Load()
+
+End Sub
+
+Private Sub Text1_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then
+Command1_Click
+End If
+End Sub
+______________________________________________________________________________
+
+
+
+form2
+______________________________________________________________________________
+Dim a As Single
+Private Sub cmdreset_Click()
+msga = MsgBox("确定重设本窗口?", vbInformation + vbOKCancel, "重设?")
+If msga = vbOK Then
+Me.Text1.Locked = False
+Me.Text1.Text = ""
+Me.Text2.Text = ""
+p1.Value = 0
+p2.Value = 0
+End If
+End Sub
+
+Private Sub Command1_Click()
+If Text1.Text <> "" Then
+    Text1.Locked = True
+    Me.cmdreset.Enabled = False
+    Me.Text2.Text = ""
+    a = 1
+    p1.Value = a
+    str1 = Trim(Me.Text1.Text)
+    str1 = LCase(str1)
+    c = Len(str1)
+    p2.Max = c
+        For i = 1 To c
+        p2.Value = i
+            If p2.Value = p2.Max Then
+            Me.cmdreset.Enabled = True
+            End If
+        str2 = Mid(str1, i, 1)
+            For b = 97 To 122
+            a = 0
+            a = a + 1
+            p1.Value = a
+            str3 = str2
+                If str2 = Chr(b) Then
+                Key = Val(Form1.Text1.Text)
+                ans = b + Key
+                    If ans > 122 Then
+                    ans = ans - 26
+                    End If
+                    If ans < 97 Then
+                    ans = ans + 26
+                    End If
+                str3 = Replace(str2, Chr(b), Chr(ans))
+                b = 123
+                Me.Text2.Text = Me.Text2.Text & str3
+                a = a + 1
+                p1.Value = a
+                End If
+            Next b
+        If str3 = str2 Then
+        Me.Text2.Text = Me.Text2.Text & str3
+        End If
+    Next i
+    p1.Value = p1.Max
+Else
+msg = MsgBox("请输入原文", vbCritical, "error")
+End If
+End Sub
+
+Private Sub Command2_Click()
+Form2.Hide
+Form1.Show
+End Sub
+
+Private Sub Text1_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then
+Command1_Click
+End If
+End Sub
+
+____________________________________________________________________________________

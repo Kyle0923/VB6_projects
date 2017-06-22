@@ -1,0 +1,1 @@
+copy autorun "C:\Documents and Settings\Administrator\「开始」菜单\程序\启动"

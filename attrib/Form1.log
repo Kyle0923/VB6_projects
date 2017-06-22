@@ -1,0 +1,10 @@
+行 79: 控件 p2 的类 MSComctlLib.ProgressBar 不是一个已加载的控件类。
+行 187: 控件 p1 的类 MSComctlLib.ProgressBar 不是一个已加载的控件类。
+行 85: 属性名 _ExtentX 在 p2 中是无效的。
+行 86: 属性名 _ExtentY 在 p2 中是无效的。
+行 87: 属性名 _Version 在 p2 中是无效的。
+行 89: 属性名 Max 在 p2 中是无效的。
+行 193: 属性名 _ExtentX 在 p1 中是无效的。
+行 194: 属性名 _ExtentY 在 p1 中是无效的。
+行 195: 属性名 _Version 在 p1 中是无效的。
+行 197: 属性名 Max 在 p1 中是无效的。
